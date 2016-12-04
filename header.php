@@ -14,6 +14,7 @@
 
 </head> 
 <body>
+
 	<div data-role="header" data-position="fixed"> 
     <h1>My Restaurant</h1>
 </div>
