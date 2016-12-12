@@ -3,10 +3,10 @@
 //starts the session 
     session_start();     
     //checks if the session has been initiated
-    if($_SESSION['user_session']=='abc')
+    if(isset($_SESSION['user_session']))
       {
         //if it is, it takes us to the delete page  
-        header('Location: delete.php');
+        header('Location: booking.php');
       }
 
 
@@ -17,7 +17,7 @@ if(isset($_POST['btn-login'])){
     $upass = $_POST['passwordbox'];
     try
        {
-          $stmt = $conn->prepare("SELECT * FROM users WHERE username=:uname AND password=:upass LIMIT 1");
+          $stmt = $conn->prepare("SELECT * FROM people WHERE username=:uname AND password=:upass LIMIT 1");
           $stmt->bindParam(':uname', $uname);
           $stmt->bindParam(':upass', $upass);
           $stmt->execute();
@@ -26,12 +26,12 @@ if(isset($_POST['btn-login'])){
           {
                 session_start();
                 $_SESSION['user_session'] = $userRow['username'];
-                header('Location: delete.php');
+                header('Location: booking.php');
              }
              else
              {
-                header('Location: login.php');
-                
+                header('Location: userlogin.php');
+                echo '<p>Please login to book a table</p>';
              }
           }
        catch(PDOException $e){
@@ -41,6 +41,7 @@ if(isset($_POST['btn-login'])){
 <?php include('header.php'); ?>
     <h2>Michel's Restaurant</h2>
     <!--this is the login form-->
+    <p>Login to book a table</p>
     <form method="POST" data-ajax="false">
         <label>Name</label>
         <input type="text" name="namebox" required>

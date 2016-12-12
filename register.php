@@ -47,11 +47,12 @@ else {
     
     <h2>Register for the site</h2>
     <!--this is the booking form-->
-    <form method="POST" data-ajax="false">
+    <form method="POST" data-ajax="false" id="myform">
         <label>Name</label>
         <input type="text" name="namebox" required>
         <label>Password</label>
-        <input type="password" name="passwordbox1" required>
+        <input type="password" name="passwordbox1" id="passwordbox1" required>
+        <p id="passwordlength"></p>
         <label>Password</label>
         <input type="password" name="passwordbox2" required>
         <label>Email</label>

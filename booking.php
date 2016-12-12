@@ -1,13 +1,20 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); 
 
-
-    
+    //starts the session 
+    session_start();     
+    //checks if the session has been initiated
+    if(!isset($_SESSION['user_session']))
+      {
+        //if not, it takes us back to the main page  
+        header('Location: userlogin.php');
+      }
+  ?>  
     <h2>Book a Table</h2>
     <!--this is the booking form-->
+    <!-- data-ajax turns off jquery navigation-->
     <form method="POST" action="book.php" data-ajax="false">
         <label>Name</label>
-        <input type="text" name="namebox" required>
-        <label>Date</label>
+<?php echo '<input type="text" name="namebox" readonly required value=" '.$_SESSION['user_session']. '"> ' ?>        <label>Date</label>
         <input type="date" name="datebox">
         <label>Time</label>
         <input type="time" name="timebox">
@@ -21,13 +28,6 @@
     <a href="all.php" rel="external">Display all records</a>
     <a href="delete.php" rel="external">Delete record</a>
     
-    
-    <h2>Search for booking</h2>
-    <!--this searches for a booking-->
-    <form method="POST" action="book.php">
-        <label></label>
-        
-    </form>
     
 
 <?php

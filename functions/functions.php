@@ -31,7 +31,7 @@ catch(PDOException $e)
     
 function add_record(){
     //function adds to the database
-   global $servername, $username, $password, $dbname,$conn;
+   global $conn;
    
     try{
     

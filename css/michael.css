@@ -1,5 +1,14 @@
-.ui-bar-a {
+
+
+#passwordlength{
+    color:#f00;
+}
+
+@media only screen and (max-device-width: 480px) {
+  /* define mobile specific styles come here */
+ .ui-bar-a {
     border: 1px solid #ff5c5c;
-    background: #cc99ff;
-    color: #fff;
+    background: #fff;
+    color: #000;
+}
 }
