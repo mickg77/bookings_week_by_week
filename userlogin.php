@@ -9,17 +9,20 @@
         header('Location: booking.php');
       }
 
-
 include_once('functions/functions.php');
 dbconnect();
 if(isset($_POST['btn-login'])){
     $uname = $_POST['namebox'];
     $upass = $_POST['passwordbox'];
+    $cryptpass=hash("SHA256",$upass);
+   
+    
     try
        {
           $stmt = $conn->prepare("SELECT * FROM people WHERE username=:uname AND password=:upass LIMIT 1");
           $stmt->bindParam(':uname', $uname);
-          $stmt->bindParam(':upass', $upass);
+          $stmt->bindParam(':upass', $cryptpass);
+    
           $stmt->execute();
           $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           if($stmt->rowCount() > 0)
@@ -31,14 +34,16 @@ if(isset($_POST['btn-login'])){
              else
              {
                 header('Location: userlogin.php');
-                echo '<p>Please login to book a table</p>';
+                echo '<script>alert("Please login to book a table");</script>';
              }
-          }
+      }
+        
+    
        catch(PDOException $e){
            echo $e->getMessage();
        }
-}?>
-<?php include('header.php'); ?>
+}
+    include('header.php'); ?>
     <h2>Michel's Restaurant</h2>
     <!--this is the login form-->
     <p>Login to book a table</p>

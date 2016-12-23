@@ -114,9 +114,9 @@ function delete_record(){
         $stmt = $conn->prepare("SELECT * FROM bookings");
         $stmt->execute();
     
-        //$result=$stmt->fetchAll();
         
-        echo '<div id="results"><table>';
+        
+        echo '<div id="results"> <table>';
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
     echo '
@@ -126,6 +126,8 @@ function delete_record(){
           <td>  '.$row["date"].'</td>
           <td>  '.$row["time"].'</td>
           <td><a rel="external" onclick="return checkDelete();" href="delete.php?action=delete&booking_id='.$row["booking_id"].'">Delete this!</a>
+          <td><a rel="external" onclick="return checkDelete();" href="delete.php?action=amend&booking_id='.$row["booking_id"].'">Amend this!</a>
+
           </td></tr>
     ';
 }
@@ -140,7 +142,7 @@ echo '</table></div>';
     echo "Error: " .$e->getMessage();
     
 }
-
+    //if submitted action was delete
     
    if($_GET['action'] == 'delete') { // if delete was requested AND an id is present...
     
@@ -163,8 +165,52 @@ echo '</table></div>';
     else {
         echo "There is an Error ".$sql."<br/> ".mysqli_error($conn);
     } 
-
-}
+   }
+    
+    //this is for amending a record
+    
+    if($_GET['action'] == 'amend') { // if amend was requested AND an id is present...
+    
+    $num=$_GET['booking_id'];
+    
+    $stmt = $conn->prepare("SELECT * FROM bookings WHERE booking_id = :num");
+    $stmt->bindParam(':num', $num);
+    $stmt->execute();
+    
+    
+    if($stmt){
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+       
+      echo '
+       <form method="POST" data-ajax="false" action="update.php">
+        <label>Name</label>
+        <input type="hidden" name="id" value="'.$row['booking_id'].'">
+        <input type="text" name="namebox" required value="'.$row['name'].'">
+        <label>Date</label>
+        <input type="date" name="datebox" value="'.$row['date'].'">
+        <label>Time</label>
+        <input type="time" name="timebox" value="'.$row['time'].'">
+        <label>Table</label>
+        <input type="text" name="tablebox" value="'.$row['date'].'" required>
+       
+        
+        <input type="submit" value="Make Changes" name="submit"  >
+        
+    </form>
+       ';
+       
+        
+      
+    }
+    else {
+        echo "There is an Error ".$sql."<br/> ".mysqli_error($conn);
+    }
+    }
+    
+    
+   
+    
+    
 $conn = null;
 }//end of display all
 

@@ -15,6 +15,9 @@ dbconnect();
 if(isset($_POST['btn-login'])){
     $uname = $_POST['namebox'];
     $upass = $_POST['passwordbox'];
+    //hashes the password before sending it to the query
+    //$upass = password_hash($upass, PASSWORD_DEFAULT);
+    echo $upass;
     try
        {
           $stmt = $conn->prepare("SELECT * FROM users WHERE username=:uname AND password=:upass LIMIT 1");
@@ -41,9 +44,12 @@ if(isset($_POST['btn-login'])){
 <?php include('header.php'); ?>
     <h2>Michel's Restaurant</h2>
     <!--this is the login form-->
-    <form method="POST" data-ajax="false">
+
+    
+    <form method="POST" data-ajax="false" name="login" onload="getCookie('username')">
+        
         <label>Name</label>
-        <input type="text" name="namebox" required>
+        <input type="text" name="namebox" id="namebox" required onblur="setCookie('username',this.value)">
         <label>Password</label>
         <input type="password" name="passwordbox" required>
         <input type="submit" value="Login" name="btn-login">

@@ -6,6 +6,9 @@ if(isset($_POST['btn-reg'])){
     $uname = $_POST['namebox'];
     $password1 = $_POST['passwordbox1'];
     $password2 = $_POST['passwordbox2'];
+    
+   $cryptpass=hash("SHA256",$password1);
+     print_r($cryptpass);
     $email =$_POST['email'];
     try{
         
@@ -22,10 +25,12 @@ if($password1==$password2){
                     //row doesn't exist, on you go
                     $stmt = $conn->prepare('INSERT INTO people (username, email, password, active) VALUES (:uname, :uemail, :upass, "1")'); 
                     $stmt->bindParam(':uname', $uname);
-                    $stmt->bindParam(':upass', $password1);
+                    $stmt->bindParam(':upass', $cryptpass);
                     $stmt->bindParam(':uemail', $email);
                     $stmt->execute();
-                   
+                   if($stmt){
+                       echo '<script>alert("Thanks for registering")</script>';
+                   }
          
          }
             
