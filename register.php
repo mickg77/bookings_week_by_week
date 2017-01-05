@@ -7,8 +7,9 @@ if(isset($_POST['btn-reg'])){
     $password1 = $_POST['passwordbox1'];
     $password2 = $_POST['passwordbox2'];
     
-   $cryptpass=hash("SHA256",$password1);
-     print_r($cryptpass);
+     //creates a new variable that stores an encryted password
+    $cryptpass=hash("SHA256",$password1);
+    
     $email =$_POST['email'];
     try{
         
@@ -25,6 +26,7 @@ if($password1==$password2){
                     //row doesn't exist, on you go
                     $stmt = $conn->prepare('INSERT INTO people (username, email, password, active) VALUES (:uname, :uemail, :upass, "1")'); 
                     $stmt->bindParam(':uname', $uname);
+                    //we now bind the encrypted password instead of the basic
                     $stmt->bindParam(':upass', $cryptpass);
                     $stmt->bindParam(':uemail', $email);
                     $stmt->execute();

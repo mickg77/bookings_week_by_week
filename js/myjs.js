@@ -3,6 +3,8 @@
 
 $(document).ready(function(){
     
+    $("#namebox").val(getCookie('username'));
+    
     
     $(document).keypress(function(e)
 	{
@@ -32,7 +34,7 @@ $( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
     
 });
 
-$("#namebox").val(getCookie('username'));
+
 
 
 

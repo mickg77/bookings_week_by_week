@@ -9,13 +9,14 @@
         header('Location: booking.php');
       }
 
+
 include_once('functions/functions.php');
 dbconnect();
 if(isset($_POST['btn-login'])){
     $uname = $_POST['namebox'];
     $upass = $_POST['passwordbox'];
     $cryptpass=hash("SHA256",$upass);
-   
+
     
     try
        {

@@ -25,8 +25,7 @@
         <input type="submit" value="book">
         
     </form>
-    <a href="all.php" rel="external">Display all records</a>
-    <a href="delete.php" rel="external">Delete record</a>
+
     
     
 

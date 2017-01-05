@@ -1,0 +1,36 @@
+@media only screen and (max-width: 800px) {
+
+#mainmenu {
+    display: none;
+}
+
+}
+
+
+#mainmenu {
+    width: 100%;
+    background-color: #000;
+    text-shadow: none;
+    color: #fff;
+}
+
+#mainmenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#mainmenu li {
+    float: left;
+}
+
+#mainmenu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
