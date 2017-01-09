@@ -158,7 +158,7 @@ echo '</table></div>';
     
     if($stmt){
        echo 'Record Deleted.';
-       echo '<script>refreshDiv();</script>';
+       echo '<script>location.href="delete.php";</script>';
         
       
     }

@@ -23,17 +23,18 @@
           $stmt->bindParam(':time', $time);
           $stmt->bindParam(':mytable', $mytable);
           $stmt->bindParam(':id', $id);
-          echo '<script>console.log("blah")</script>';
+          
           $stmt->execute();
             if($stmt){
               echo '<script>alert("Record Updated")</script>';
+              echo '<script>location.href="delete.php"</script>';
         
             }
     
             else {
               echo "There is an Error ".$sql."<br/> ".mysqli_error($conn);
             }
-      }else {header('Location:login.php');}
+      }else {header('Location:delete.php');}
     
     }
     

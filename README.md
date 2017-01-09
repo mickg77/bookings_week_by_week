@@ -7,4 +7,5 @@
     ----------------------------------------------------------------- 
 
 
-adding the amendment of a record
+tidied up the delete/amend functions
+added an image to the front page

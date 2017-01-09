@@ -2,12 +2,10 @@
 
 
     <h2>Welcome</h2>
-    <!--this is the booking form-->
-    <p>Welcome to the site... </p>
-    <!--a panel for sliding...later on-->
     
-    <a href="login.php" rel="external">Login</a>
-    <a href="register.php" rel="external">Register</a>
-    <a href="userlogin.php" rel="external">Book a table</a>
-    
+    <p> Muffin pastry toffee sweet roll ice cream dessert gummies soufflé apple pie. 
+    Gingerbread sweet cheesecake lemon drops pastry apple pie jelly. Brownie macaroon caramels sweet tootsie roll marzipan chocolate bar danish cake. 
+    Cheesecake topping carrot cake ice cream cotton candy sweet roll dragée sesame snaps jelly-o. </p>
+ <p>Sugar plum tootsie roll cheesecake ice cream sweet roll topping dragée. </p>
+    <img src="images/loch.jpg" alt="restaurant" class="fyne"/>
 <?php include('footer.php'); ?>
